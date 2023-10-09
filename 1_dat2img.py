@@ -40,7 +40,7 @@ class Buffer:
                    cmap=CMAP,
                    format='jpg')
 
-def mkdir_images_from_dat_path(dat_path: Path, CF:int=0) -> str | None:
+def mkdir_images_from_dat_path(dat_path: Path, CF:int=0):
     """
     creating directory with jpg files by path with dat files
     """
@@ -49,7 +49,7 @@ def mkdir_images_from_dat_path(dat_path: Path, CF:int=0) -> str | None:
     except FileNotFoundError as err:
         return str(err)
 
-    image_path = Path('dataset') / 'images'
+    image_path = Path('dataset')/ 'images'
     os.makedirs(image_path, exist_ok=True)
 
     for buf in sorted(buffers):
