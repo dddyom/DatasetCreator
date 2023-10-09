@@ -1,8 +1,7 @@
 from pathlib import Path
 import re
-import os
 
-def parse_line(source_line: str) -> dict[str, float] | None:
+def parse_line(source_line: str):
     A, D = 0, 0
 
     for coord_string in source_line.split(','):
