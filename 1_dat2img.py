@@ -31,7 +31,7 @@ class Buffer:
 
         if str(minus_cf).isdigit() and int(minus_cf) > 0:
             convert = self.matrix - minus_cf
-            self.matrix = np.maximum(self.matrix, 0)
+            self.matrix = np.maximum(convert, 0)
 
     def save_jpg(self, jpg_fname: Path) -> None:
         plt.imsave(fname=jpg_fname, arr=self.matrix, cmap=CMAP, format="jpg")
@@ -53,7 +53,7 @@ def mkdir_images_from_dat_path(dat_path: Path, CF: int = 0, minus_cf: int = 0):
         if not re.search("^SO.*dat$", buf.name):
             continue
 
-        jpg_fname = image_path / (buf.stem + ".jpg")
+        jpg_fname = image_path / (buf.stem + f"_{minus_cf}" if minus_cf else "" + ".jpg")
         if jpg_fname.exists():
             continue
 
