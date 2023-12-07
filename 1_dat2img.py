@@ -52,8 +52,11 @@ def mkdir_images_from_dat_path(dat_path: Path, CF: int = 0, minus_cf: int = 0):
     for buf in sorted(buffers):
         if not re.search("^SO.*dat$", buf.name):
             continue
+        buf_name = buf.stem
+        if minus_cf:
+            buf_name += f"_{minus_cf}"
 
-        jpg_fname = image_path / (buf.stem + f"_{minus_cf}" if minus_cf else "" + ".jpg")
+        jpg_fname = image_path / (buf_name + ".jpg")
         if jpg_fname.exists():
             continue
 
